@@ -1,0 +1,16 @@
+{
+  "name": "Brainstormers - AI-Powered Creative Thinking",
+  "short_name": "Brainstormers",
+  "description": "Transform your ideas into breakthrough solutions with AI-powered brainstorming methodologies",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6366f1",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}
