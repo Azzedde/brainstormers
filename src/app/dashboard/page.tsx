@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import Link from 'next/link';
 
 export default function DashboardPage() {
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null);

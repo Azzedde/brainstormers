@@ -25,26 +25,25 @@ export default function LandingPage() {
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <Button size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:opacity-90">
-
             <Link href="/setup">
+              <Button size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:opacity-90">
                 <span className="mr-2">✨</span>
                 Start Brainstorming
                 <span className="ml-2">→</span>
-            </Link>
               </Button>
+            </Link>
 
-            <Button size="lg" variant="outline">
-              <Link href="#how-it-works" scroll>
+            <Link href="#how-it-works" scroll>
+              <Button size="lg" variant="outline">
                 Learn How It Works
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         </div>
 
         {/* Method preview cards */}
         <div className="mt-20 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-          {methods.map((method, index) => (
+          {methods.map((method, _) => (
             <a
               key={method.id}
               href={method.link}
@@ -85,7 +84,7 @@ export default function LandingPage() {
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature, index) => (
+            {features.map((feature, _) => (
               <Card key={feature.title} className="group relative overflow-hidden bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 p-8 h-64">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 group-hover:from-blue-500/10 group-hover:via-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500"></div>
                 <div className="relative h-full flex flex-col">
@@ -162,15 +161,12 @@ export default function LandingPage() {
                 </div>
               </div>
               <div className="mt-6">
-                                      <Button variant="outline" size="sm" className="text-green-700 border-green-300 hover:bg-green-100">
-
                 <Link href="https://github.com/Azzedde/brainstormers" target="_blank">
-
-                        <span className="mr-2">📖</span>
-                        View Source Code
+                  <Button variant="outline" size="sm" className="text-green-700 border-green-300 hover:bg-green-100">
+                    <span className="mr-2">📖</span>
+                    View Source Code
+                  </Button>
                 </Link>
-                      </Button>
-
               </div>
 
             </div>
@@ -190,15 +186,14 @@ export default function LandingPage() {
               Join thousands of innovators using AI-powered brainstorming to unlock their creative potential.
             </p>
             <div className="mt-6">
-            <Button size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:opacity-90">
-
-            <Link href="/setup">
-                <span className="mr-2">✨</span>
-                Start Your Creative Journey
-                <span className="ml-2">→</span>
-            </Link>
-            </Button>
-                      </div>
+              <Link href="/setup">
+                <Button size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:opacity-90">
+                  <span className="mr-2">✨</span>
+                  Start Your Creative Journey
+                  <span className="ml-2">→</span>
+                </Button>
+              </Link>
+            </div>
           </Card>
         </div>
       </section>

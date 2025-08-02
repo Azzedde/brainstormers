@@ -1,6 +1,6 @@
 import OpenAI from 'openai';
 import { getProvider } from './providers';
-import { UserSettings, BrainstormRequest, BrainstormResponse, TreeNode } from '@/types/brainstorm';
+import { UserSettings, BrainstormRequest, BrainstormResponse } from '@/types/brainstorm';
 import { getPrompt, formatPrompt } from '../brainstorm/prompts';
 import { parseBulletPoints, createTreeNode } from '../utils/parser';
 
@@ -34,20 +34,38 @@ export class BrainstormClient {
     }
 
     try {
+      const messages: OpenAI.Chat.ChatCompletionMessageParam[] = [
+        {
+          role: 'system',
+          content: 'You are an expert brainstorming facilitator. Always follow the exact format requested and provide high-quality, creative ideas.'
+        }
+      ];
+
+      // Add conversation history if context exists
+      if (request.context && request.context.trim()) {
+        const contextLines = request.context.split('\n').filter(line => line.trim());
+        for (const line of contextLines) {
+          const [role, ...contentParts] = line.split(': ');
+          const content = contentParts.join(': ');
+          if ((role === 'user' || role === 'assistant') && content) {
+            messages.push({
+              role: role as 'user' | 'assistant',
+              content: content
+            });
+          }
+        }
+      }
+
+      // Add the current user input with brainstorming method prompt
       const prompt = this.buildPrompt(request);
+      messages.push({
+        role: 'user',
+        content: prompt
+      });
       
       const completion = await this.client.chat.completions.create({
         model: this.settings.selectedModel,
-        messages: [
-          {
-            role: 'system',
-            content: 'You are an expert brainstorming facilitator. Always follow the exact format requested and provide high-quality, creative ideas.'
-          },
-          {
-            role: 'user',
-            content: prompt
-          }
-        ],
+        messages,
         temperature: 0.8,
         max_tokens: 2000,
         stream: this.settings.streamingEnabled,
@@ -161,13 +179,22 @@ export class BrainstormClient {
         }
       ];
 
-      if (context) {
-        messages.push({
-          role: 'user',
-          content: context
-        });
+      // Add conversation history if context exists
+      if (context && context.trim()) {
+        const contextLines = context.split('\n').filter(line => line.trim());
+        for (const line of contextLines) {
+          const [role, ...contentParts] = line.split(': ');
+          const content = contentParts.join(': ');
+          if ((role === 'user' || role === 'assistant') && content) {
+            messages.push({
+              role: role as 'user' | 'assistant',
+              content: content
+            });
+          }
+        }
       }
 
+      // Add the current user message
       messages.push({
         role: 'user',
         content: message

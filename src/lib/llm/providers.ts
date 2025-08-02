@@ -5,7 +5,7 @@ export const LLM_PROVIDERS: Record<string, LLMProvider> = {
     id: 'openai',
     name: 'OpenAI',
     baseURL: 'https://api.openai.com/v1',
-    models: ['gpt-4', 'gpt-4-turbo', 'gpt-3.5-turbo'],
+    models: ['gpt-4', 'gpt-4.1-nano', 'gpt-3.5-turbo'],
     icon: '🤖',
     requiresApiKey: true,
   },

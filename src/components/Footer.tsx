@@ -111,11 +111,11 @@ export default function Footer() {
                 <div className="text-center">
                   <div className="text-4xl mb-4">🚀</div>
                   <h4 className="text-xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                    Let's Build Something Amazing Together
+                    Let&apos;s Build Something Amazing Together
                   </h4>
                   <p className="text-slate-300 mb-6 leading-relaxed">
                     Interested in sponsoring this project, turning it into a venture, or collaborating on innovative AI solutions? 
-                    I'm always excited to connect with fellow innovators and explore new opportunities.
+                    I&apos;m always excited to connect with fellow innovators and explore new opportunities.
                   </p>
                   <Link
                     href="mailto:aitsaid.azzedineidir@gmail.com"

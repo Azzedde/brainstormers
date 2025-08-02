@@ -200,7 +200,6 @@ export function MarkdownRenderer({ content, className = '' }: MarkdownRendererPr
     ];
 
     // Process text with all patterns
-    const processedText = text;
     const replacements: { start: number; end: number; element: React.ReactElement }[] = [];
 
     patterns.forEach(({ regex, replacement }) => {

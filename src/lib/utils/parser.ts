@@ -55,7 +55,7 @@ export function createTreeNode(
   };
 
   // Create child nodes for each idea
-  ideas.forEach((idea, index) => {
+  ideas.forEach((idea, _) => {
     const childNode: TreeNode = {
       id: generateNodeId(),
       content: idea,
