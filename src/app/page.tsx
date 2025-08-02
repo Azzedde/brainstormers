@@ -1,5 +1,5 @@
 'use client';
-
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 
@@ -25,26 +25,49 @@ export default function LandingPage() {
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <a href="/setup">
-              <Button size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:opacity-90">
+            <Button size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:opacity-90">
+
+            <Link href="/setup">
                 <span className="mr-2">✨</span>
                 Start Brainstorming
                 <span className="ml-2">→</span>
+            </Link>
               </Button>
-            </a>
+
             <Button size="lg" variant="outline">
-              Learn How It Works
+              <Link href="#how-it-works" scroll>
+                Learn How It Works
+              </Link>
             </Button>
           </div>
         </div>
 
         {/* Method preview cards */}
-        <div className="mt-20 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6 max-w-4xl mx-auto">
+        <div className="mt-20 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
           {methods.map((method, index) => (
-            <Card key={method.id} className="p-4 text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-2">
-              <div className="mb-2 text-3xl">{method.icon}</div>
-              <p className="text-sm font-medium">{method.name}</p>
-            </Card>
+            <a
+              key={method.id}
+              href={method.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group"
+            >
+              <Card className="relative overflow-hidden bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer h-48">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 transition-all duration-500"></div>
+                <div className="relative p-6 h-full flex flex-col items-center justify-center text-center">
+                  <div className="mb-4 p-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-3xl text-white">{method.icon}</span>
+                  </div>
+                  <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                    {method.name}
+                  </h3>
+                  <div className="mt-3 text-xs text-slate-500 dark:text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Click to learn more →
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+              </Card>
+            </a>
           ))}
         </div>
       </section>
@@ -52,23 +75,31 @@ export default function LandingPage() {
       {/* Features Section */}
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="text-center mb-12">
-            <h2 className="mb-4 text-3xl font-bold sm:text-4xl">
+          <div className="text-center mb-16">
+            <h2 className="mb-6 text-4xl font-bold sm:text-5xl">
               Why Choose <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Brainstormers</span>?
             </h2>
-            <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-300">
+            <p className="mx-auto max-w-3xl text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Our platform combines proven brainstorming techniques with cutting-edge AI to supercharge your creative process.
             </p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {features.map((feature, index) => (
-              <Card key={feature.title} className="p-6 hover:shadow-lg transition-shadow">
-                <div className="mb-4 inline-flex rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 p-3">
-                  <span className="text-white text-xl">{feature.icon}</span>
+              <Card key={feature.title} className="group relative overflow-hidden bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 p-8 h-64">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 group-hover:from-blue-500/10 group-hover:via-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500"></div>
+                <div className="relative h-full flex flex-col">
+                  <div className="mb-6 inline-flex rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 p-4 shadow-lg group-hover:scale-110 transition-transform duration-300 w-fit">
+                    <span className="text-white text-2xl">{feature.icon}</span>
+                  </div>
+                  <h3 className="mb-4 text-xl font-bold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                    {feature.title}
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed flex-grow">
+                    {feature.description}
+                  </p>
                 </div>
-                <h3 className="mb-2 text-xl font-semibold">{feature.title}</h3>
-                <p className="text-slate-600 dark:text-slate-300">{feature.description}</p>
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
               </Card>
             ))}
           </div>
@@ -76,7 +107,7 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works */}
-      <section className="px-4 py-20 sm:px-6 lg:px-8 bg-white/50 dark:bg-slate-800/50">
+      <section id="how-it-works" className="px-4 py-20 sm:px-6 lg:px-8 bg-white/50 dark:bg-slate-800/50">
         <div className="mx-auto max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="mb-4 text-3xl font-bold sm:text-4xl">
@@ -131,11 +162,17 @@ export default function LandingPage() {
                 </div>
               </div>
               <div className="mt-6">
-                <Button variant="outline">
-                  <span className="mr-2">📖</span>
-                  View Source Code
-                </Button>
+                                      <Button variant="outline" size="sm" className="text-green-700 border-green-300 hover:bg-green-100">
+
+                <Link href="https://github.com/Azzedde/brainstormers" target="_blank">
+
+                        <span className="mr-2">📖</span>
+                        View Source Code
+                </Link>
+                      </Button>
+
               </div>
+
             </div>
           </Card>
         </div>
@@ -152,13 +189,16 @@ export default function LandingPage() {
             <p className="mb-8 text-lg text-slate-600 dark:text-slate-300">
               Join thousands of innovators using AI-powered brainstorming to unlock their creative potential.
             </p>
-            <a href="/setup">
-              <Button size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:opacity-90">
+            <div className="mt-6">
+            <Button size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:opacity-90">
+
+            <Link href="/setup">
                 <span className="mr-2">✨</span>
                 Start Your Creative Journey
                 <span className="ml-2">→</span>
-              </Button>
-            </a>
+            </Link>
+            </Button>
+                      </div>
           </Card>
         </div>
       </section>
@@ -167,12 +207,42 @@ export default function LandingPage() {
 }
 
 const methods = [
-  { id: 'big-mind-mapping', name: 'Big Mind Mapping', icon: '🗺️' },
-  { id: 'reverse-brainstorming', name: 'Reverse Brainstorming', icon: '🔄' },
-  { id: 'role-storming', name: 'Role Storming', icon: '🎭' },
-  { id: 'scamper', name: 'SCAMPER', icon: '🔧' },
-  { id: 'six-thinking-hats', name: 'Six Thinking Hats', icon: '🎩' },
-  { id: 'starbursting', name: 'Starbursting', icon: '⭐' },
+  {
+    id: 'big-mind-mapping',
+    name: 'Big Mind Mapping',
+    icon: '🗺️',
+    link: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10900480/'
+  },
+  {
+    id: 'reverse-brainstorming',
+    name: 'Reverse Brainstorming',
+    icon: '🔄',
+    link: 'https://www.researchgate.net/publication/343888460_Deconstruction_of_Idea_Generation_Methods_Into_a_Framework_of_Creativity_Mechanisms'
+  },
+  {
+    id: 'role-storming',
+    name: 'Role Storming',
+    icon: '🎭',
+    link: 'https://www.researchgate.net/publication/343888460_Deconstruction_of_Idea_Generation_Methods_Into_a_Framework_of_Creativity_Mechanisms'
+  },
+  {
+    id: 'scamper',
+    name: 'SCAMPER',
+    icon: '🔧',
+    link: 'https://en.wikipedia.org/wiki/SCAMPER'
+  },
+  {
+    id: 'six-thinking-hats',
+    name: 'Six Thinking Hats',
+    icon: '🎩',
+    link: 'https://en.wikipedia.org/wiki/Six_Thinking_Hats'
+  },
+  {
+    id: 'starbursting',
+    name: 'Starbursting',
+    icon: '⭐',
+    link: 'https://www.researchgate.net/publication/343888460_Deconstruction_of_Idea_Generation_Methods_Into_a_Framework_of_Creativity_Mechanisms'
+  },
 ];
 
 const features = [

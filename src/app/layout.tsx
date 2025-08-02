@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import Footer from '@/components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -42,6 +43,7 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
           {children}
+          <Footer />
         </div>
       </body>
     </html>
